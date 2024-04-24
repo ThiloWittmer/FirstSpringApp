@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 th:text="${ueberschrift}">Titel</h1>
+    <form method="POST"
+        action="/benutzer">
+        <p>Name</p>
+        <input name="name" type="text">
+        <p>E-Mail</p>
+        <input name="mail" type="email">
+        <p>Passwort</p>
+        <input name="passwort" type="text">
+        <p>Geburtstag</p>
+        <input name="geburtstag" type="date">
+        <div>
+            <p>Mag</p>
+            <p>Mag nicht</p>
+        </div>
+    </form>
+</body>
+</html>
