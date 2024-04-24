@@ -8,10 +8,10 @@
 </head>
 <body>
     <h1 th:text="${ueberschrift}">Titel</h1>
-    <form method="POST"
-        action="/benutzer">
+    <form th:action="@{#}" th:method="POST"
+        th:object="${formular}">
         <p>Name</p>
-        <input name="name" type="text">
+        <input name="name" type="text" th:field="*{name}">
         <p>E-Mail</p>
         <input name="mail" type="email">
         <p>Passwort</p>
@@ -22,6 +22,7 @@
             <p>Mag</p>
             <p>Mag nicht</p>
         </div>
+        <input type="submit" value="ok">
     </form>
 </body>
 </html>
