@@ -13,11 +13,11 @@
         <p>Name</p>
         <input name="name" type="text" th:field="*{name}">
         <p>E-Mail</p>
-        <input name="mail" type="email">
+        <input name="mail" type="email" th:field="*{mail}">
         <p>Passwort</p>
-        <input name="passwort" type="text">
+        <input name="passwort" type="text" th:field="*{password}">
         <p>Geburtstag</p>
-        <input name="geburtstag" type="date">
+        <input name="geburtstag" type="date" th:field="*{bday}">
         <div>
             <p>Mag</p>
             <p>Mag nicht</p>
@@ -25,4 +25,4 @@
         <input type="submit" value="ok">
     </form>
 </body>
-</html>
+</html>  
