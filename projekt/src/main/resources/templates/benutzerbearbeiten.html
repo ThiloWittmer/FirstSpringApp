@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en"
-    xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <h1 th:text="${ueberschrift}">Titel</h1>
-    <form th:action="@{#}" th:method="POST"
-        th:object="${formular}">
+    <form th:action="@{#}" th:method="POST" th:object="${formular}">
         <p>Name</p>
         <input name="name" type="text" th:field="*{name}">
         <p>E-Mail</p>
@@ -19,10 +19,27 @@
         <p>Geburtstag</p>
         <input name="geburtstag" type="date" th:field="*{bday}">
         <div>
-            <p>Mag</p>
-            <p>Mag nicht</p>
+            <table>
+                <th>
+                    <p>
+                    <h2>Mag</h2>(max. <span th:text="${maxWunsch}">5</span>)</p>
+                    <p>
+                    <ul id="vorliebenListe">
+                        <li th:each="ele, status : ${formular.liste}">
+                            <input type="text"
+                            th:field="*{liste[__${status.index}__].wort}">
+                        </li>
+                    </ul>
+                </th>
+                <th>
+                    <p>
+                    <h2>Mag nicht</h2>(max. <span th:text="${maxWunsch}">5</span>)</p>
+                    <p>
+                </th>
+            </table>
         </div>
         <input type="submit" value="ok">
     </form>
 </body>
-</html>  
+
+</html>

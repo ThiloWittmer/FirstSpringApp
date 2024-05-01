@@ -1,6 +1,8 @@
 package de.hsrm.mi.web.projekt.ui.benutzer;
 
 import java.time.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -11,6 +13,8 @@ public class BenutzerFormular {
     private String password;
     @DateTimeFormat (iso = ISO.DATE)
     private LocalDate bday;
+
+    List<Vorlieben> liste = new ArrayList<>();
 
     public String getMail() {
         return mail;
@@ -44,7 +48,13 @@ public class BenutzerFormular {
         this.bday = bday;
     }
 
+    public List<Vorlieben> getListe() {
+        return liste;
+    }
+
+    public void setListe(List<Vorlieben> liste) {
+        this.liste = liste;
+    }
+
     
-
-
 }
