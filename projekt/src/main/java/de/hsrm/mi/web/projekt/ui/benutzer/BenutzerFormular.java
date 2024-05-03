@@ -1,8 +1,8 @@
 package de.hsrm.mi.web.projekt.ui.benutzer;
 
 import java.time.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -14,7 +14,9 @@ public class BenutzerFormular {
     @DateTimeFormat (iso = ISO.DATE)
     private LocalDate bday;
 
-    private List<Vorlieben> liste = new ArrayList<>();
+    private Set<Vorliebe> magListe = new HashSet<Vorliebe>();
+    private Set<Vorliebe> magNichtListe = new HashSet<Vorliebe>();
+
 
     public String getMail() {
         return mail;
@@ -48,12 +50,28 @@ public class BenutzerFormular {
         this.bday = bday;
     }
 
-    public List<Vorlieben> getListe() {
-        return liste;
+    public Set<Vorliebe> getMagListe() {
+        return magListe;
     }
 
-    public void setListe(List<Vorlieben> liste) {
-        this.liste = liste;
+    public void setMagListe(String wort) {
+        if(wort.length() > 0) {
+            Vorliebe vorl = new Vorliebe();
+            vorl.setWort(wort);
+            this.magListe.add(vorl);
+        }
+    }
+
+    public Set<Vorliebe> getMagNichtListe() {
+        return magNichtListe;
+    }
+
+    public void setMagNichtListe(String wort) {
+        if(wort.length() > 0) {
+            Vorliebe vorl = new Vorliebe();
+            vorl.setWort(wort);
+            this.magNichtListe.add(vorl);
+        }
     }
 
     

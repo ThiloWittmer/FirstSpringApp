@@ -19,24 +19,31 @@
         <p>Geburtstag</p>
         <input name="geburtstag" type="date" th:field="*{bday}">
         <div>
-            <table>
-                <th>
-                    <p>
-                    <h2>Mag</h2>(max. <span th:text="${maxWunsch}">5</span>)</p>
-                    <p>
-                    <ul id="vorliebenListe">
-                        <li th:each="ele, status : ${formular.liste}">
-                            <input type="text"
-                            th:field="*{liste[__${status.index}__].wort}">
+            <div id="mag">
+                <h2>Mag</h2>
+                <p th:text="${maxWunsch}"></p>
+                <ul>
+                    <li th:if="${#lists.size(formular.magListe)} lt 5"><input name="magListe" type="text"></li>
+                    <th:block th:each="mag, status : ${#lists.sort(formular.magListe)}">
+                        <li>
+                            <p th:text="${mag.wort}">
                         </li>
-                    </ul>
-                </th>
-                <th>
-                    <p>
-                    <h2>Mag nicht</h2>(max. <span th:text="${maxWunsch}">5</span>)</p>
-                    <p>
-                </th>
-            </table>
+                    </th:block>
+                </ul>
+            </div>
+            <div id="mag_nicht">
+                <h2>Mag nicht</h2>
+                <p th:text="${maxWunsch}"></p>
+                <ul name="magNichtListe">
+                    <li th:if="${#lists.size(formular.magNichtListe)} lt 5"><input name="magNichtListe" type="text"></li>
+                    <th:block th:each="magNicht, status : ${formular.magNichtListe}">
+                        <li>
+                            <p th:text="${magNicht.wort}">
+                        </li>
+                    </th:block>
+                </ul>
+            </div>
+    
         </div>
         <input type="submit" value="ok">
     </form>

@@ -1,16 +1,9 @@
 package de.hsrm.mi.web.projekt.ui.benutzer;
 
-public class Vorlieben {
+public class Vorliebe implements Comparable<Vorliebe> {
     
-    private long id;
     private String wort;
 
-    public long getId() {
-        return id;
-    }
-    public void setId(long id) {
-        this.id = id;
-    }
     public String getWort() {
         return wort;
     }
@@ -18,7 +11,8 @@ public class Vorlieben {
         this.wort = wort;
     }
 
-    
-
-
+    @Override
+    public int compareTo(Vorliebe andereVorliebe) {
+        return this.wort.compareTo(andereVorliebe.getWort());
+    }
 }

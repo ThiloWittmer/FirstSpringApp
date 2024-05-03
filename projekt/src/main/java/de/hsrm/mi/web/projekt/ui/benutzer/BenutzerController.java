@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequestMapping("/benutzer")
-@SessionAttributes("formular")
+@SessionAttributes({"formular", "ueberschrift", "benNr", "maxWunsch"})
 public class BenutzerController {
 
     @ModelAttribute("formular")
@@ -23,14 +23,14 @@ public class BenutzerController {
     @GetMapping("/{benutzerNr}")
     public String benutzerProfil(@PathVariable("benutzerNr") long benNr, Model m, @ModelAttribute("formular") BenutzerFormular form) {
         int maxWunsch = 5;
-        m.addAttribute("maxWunsch", maxWunsch);
+        m.addAttribute("maxWunsch", "(max. " + maxWunsch +")");
         m.addAttribute("ueberschrift", ("Benutzerprofil " + benNr + " bearbeiten"));
-    return "benutzerbearbeiten";
+        return "benutzerbearbeiten";
     }
     
     @PostMapping("{benNr}")
     public String postForm(@ModelAttribute("formular") BenutzerFormular form, Model m) {
-    return "benutzerbearbeiten";
+        return "benutzerbearbeiten";
     }
     
 }
