@@ -14,7 +14,7 @@ public class BenutzerFormular {
     @DateTimeFormat (iso = ISO.DATE)
     private LocalDate bday;
 
-    List<Vorlieben> liste = new ArrayList<>();
+    private List<Vorlieben> liste = new ArrayList<>();
 
     public String getMail() {
         return mail;
