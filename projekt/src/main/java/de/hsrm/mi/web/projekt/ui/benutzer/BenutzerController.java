@@ -9,28 +9,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
 @Controller
 @RequestMapping("/benutzer")
-@SessionAttributes({"formular", "ueberschrift", "benNr", "maxWunsch"})
+@SessionAttributes({ "formular", "ueberschrift", "benNr", "maxWunsch" })
 public class BenutzerController {
 
     @ModelAttribute("formular")
-    public void creatForm(Model m){
+    public void creatForm(Model m) {
         m.addAttribute("formular", new BenutzerFormular());
     }
 
     @GetMapping("/{benutzerNr}")
-    public String benutzerProfil(@PathVariable("benutzerNr") long benNr, Model m, @ModelAttribute("formular") BenutzerFormular form) {
+    public String benutzerProfil(@PathVariable("benutzerNr") long benNr, Model m,
+            @ModelAttribute("formular") BenutzerFormular form) {
         int maxWunsch = 5;
-        m.addAttribute("maxWunsch", "(max. " + maxWunsch +")");
+        m.addAttribute("maxWunsch", "(max. " + maxWunsch + ")");
         m.addAttribute("ueberschrift", ("Benutzerprofil " + benNr + " bearbeiten"));
         return "benutzerbearbeiten";
     }
-    
+
     @PostMapping("{benNr}")
     public String postForm(@ModelAttribute("formular") BenutzerFormular form, Model m) {
         return "benutzerbearbeiten";
     }
-    
+
 }

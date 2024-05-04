@@ -4,49 +4,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="all" href="/styles.css" th:href="@{/styles.css}"/>
     <title>Document</title>
 </head>
 
 <body>
-    <h1 th:text="${ueberschrift}">Titel</h1>
-    <form th:action="@{#}" th:method="POST" th:object="${formular}">
-        <p>Name</p>
-        <input name="name" type="text" th:field="*{name}">
-        <p>E-Mail</p>
-        <input name="mail" type="email" th:field="*{mail}">
-        <p>Passwort</p>
-        <input name="passwort" type="text" th:field="*{password}">
-        <p>Geburtstag</p>
-        <input name="geburtstag" type="date" th:field="*{bday}">
-        <div>
-            <div id="mag">
-                <h2>Mag</h2>
-                <p th:text="${maxWunsch}"></p>
-                <ul>
-                    <li th:if="${#lists.size(formular.magListe)} lt 5"><input name="magListe" type="text"></li>
-                    <th:block th:each="mag, status : ${#lists.sort(formular.magListe)}">
-                        <li>
-                            <p th:text="${mag.wort}">
-                        </li>
-                    </th:block>
-                </ul>
+    <div class="container">
+        <form th:action="@{#}" th:method="POST" th:object="${formular}">
+            <h1 th:text="${ueberschrift}">Titel</h1>
+            <div>
+                <p>Name</p>
+                <input name="name" type="text" th:field="*{name}">
             </div>
-            <div id="mag_nicht">
-                <h2>Mag nicht</h2>
-                <p th:text="${maxWunsch}"></p>
-                <ul name="magNichtListe">
-                    <li th:if="${#lists.size(formular.magNichtListe)} lt 5"><input name="magNichtListe" type="text"></li>
-                    <th:block th:each="magNicht, status : ${formular.magNichtListe}">
-                        <li>
-                            <p th:text="${magNicht.wort}">
-                        </li>
-                    </th:block>
-                </ul>
+            <div>
+                <p>E-Mail</p>
+                <input name="mail" type="email" th:field="*{mail}">
             </div>
-    
-        </div>
-        <input type="submit" value="ok">
-    </form>
+            <div>
+                <p>Passwort</p>
+                <input name="passwort" type="text" th:field="*{password}">
+            </div>
+            <div>
+                <p>Geburtstag</p>
+                <input name="geburtstag" type="date" th:field="*{bday}">
+            </div>
+            <div class="row">
+                <div id="mag" class="column">
+                    <h2>Mag</h2>
+                    <p th:text="${maxWunsch}"></p>
+                    <ul name="magLsite" class="custom-list">
+                        <li th:if="${#lists.size(formular.magListe)} lt 5"><input name="magListe" type="text"></li>
+                        <th:block th:each="mag, status : ${#lists.sort(formular.magListe)}">
+                            <li>
+                                <p th:text="${mag.wort}">
+                            </li>
+                        </th:block>
+                    </ul>
+                </div>
+                <div id="mag_nicht" class="column">
+                    <h2>Mag nicht</h2>
+                    <p th:text="${maxWunsch}"></p>
+                    <ul name="magNichtListe" class="custom-list">
+                        <li th:if="${#lists.size(formular.magNichtListe)} lt 5"><input name="magNichtListe" type="text">
+                        </li>
+                        <th:block th:each="magNicht, status : ${formular.magNichtListe}">
+                            <li>
+                                <p th:text="${magNicht.wort}">
+                            </li>
+                        </th:block>
+                    </ul>
+                </div>
+            </div>
+            <input type="submit" value="ok">
+        </form>
+
+    </div>
 </body>
 
 </html>

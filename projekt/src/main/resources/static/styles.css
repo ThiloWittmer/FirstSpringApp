@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background: #EDEDED;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    background: #9d99999f;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 1;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+input[type="submit"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+input[type="text"] {
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="email"] {
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="date"] {
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+ul.custom-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul.custom-list li {
+    border-top: 1px solid #ccc;
+    padding: 8px;
+}
+
+ul.custom-list li:first-child {
+    border-top: none;
+}
+
+input[type="text"]:hover {
+    background-color: #EDEDED;
+}
+
+input[type="date"]:hover {
+    background-color: #EDEDED;
+}
+
+input[type="email"]:hover {
+    background-color: #EDEDED;
+}
