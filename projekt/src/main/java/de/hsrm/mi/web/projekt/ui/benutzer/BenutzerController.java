@@ -2,11 +2,15 @@ package de.hsrm.mi.web.projekt.ui.benutzer;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -29,7 +33,8 @@ public class BenutzerController {
     }
 
     @PostMapping("{benNr}")
-    public String postForm(@ModelAttribute("formular") BenutzerFormular form, Model m) {
+    public String postForm(@Valid @ModelAttribute("formular") BenutzerFormular form,
+    BindingResult formErrors, Model m) {
         return "benutzerbearbeiten";
     }
 

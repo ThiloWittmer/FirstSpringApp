@@ -52,21 +52,7 @@ input[type="submit"]:hover {
     background-color: #45a049;
 }
 
-input[type="text"] {
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-input[type="email"] {
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-input[type="date"] {
+.inputField {
     font-size: 16px;
     border: none;
     border-radius: 5px;
@@ -98,4 +84,14 @@ input[type="date"]:hover {
 
 input[type="email"]:hover {
     background-color: #EDEDED;
+}
+
+.errorMessage {
+    color: red;
+}
+
+.inputError {
+    border-style: solid;
+    border-width: 2px;
+    border-color: red;
 }

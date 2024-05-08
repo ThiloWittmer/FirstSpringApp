@@ -7,6 +7,8 @@ import java.util.Set;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import jakarta.validation.constraints.*;
+
 public class BenutzerFormular {
     private String name;
     private String mail;
@@ -18,6 +20,7 @@ public class BenutzerFormular {
     private Set<Vorliebe> magNichtListe = new HashSet<Vorliebe>();
 
 
+    @Email
     public String getMail() {
         return mail;
     }
@@ -26,7 +29,9 @@ public class BenutzerFormular {
         this.mail = mail;
     }
 
-    public String getName(){
+    @NotNull
+    @Size(min=3, max=80, message = "Namenlaenge von {min} bis {max}")
+    public String getName() {
         return name;
     }
 
@@ -42,6 +47,7 @@ public class BenutzerFormular {
         this.password = password;
     }
 
+    @Past
     public LocalDate getBday() {
         return bday;
     }

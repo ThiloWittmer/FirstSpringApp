@@ -14,26 +14,32 @@
             <h1 th:text="${ueberschrift}">Titel</h1>
             <div>
                 <p>Name</p>
-                <input name="name" type="text" th:field="*{name}">
+                <input class="inputField" name="name" type="text" th:field="*{name}" th:errorclass="inputError">
+                <p class="errorMessage" th:if="${#fields.hasErrors('name')}"
+                    th:errors="*{name}"></p>
             </div>
             <div>
                 <p>E-Mail</p>
-                <input name="mail" type="email" th:field="*{mail}">
+                <input class="inputField" name="mail" type="text" th:field="*{mail}" th:errorclass="inputError">
+                <p class="errorMessage" th:if="${#fields.hasErrors('mail')}"
+                    th:errors="*{mail}"></p>
             </div>
             <div>
                 <p>Passwort</p>
-                <input name="passwort" type="text" th:field="*{password}">
+                <input class="inputField" name="passwort" type="password" th:field="*{password}">
             </div>
             <div>
                 <p>Geburtstag</p>
-                <input name="geburtstag" type="date" th:field="*{bday}">
+                <input class="inputField" name="geburtstag" type="date" th:field="*{bday}" th:errorclass="inputError">
+                <p class="errorMessage" th:if="${#fields.hasErrors('bday')}"
+                    th:errors="*{bday}"></p>
             </div>
             <div class="row">
                 <div id="mag" class="column">
                     <h2>Mag</h2>
                     <p th:text="${maxWunsch}"></p>
                     <ul name="magLsite" class="custom-list">
-                        <li th:if="${#lists.size(formular.magListe)} lt 5"><input name="magListe" type="text"></li>
+                        <li th:if="${#lists.size(formular.magListe)} lt 5"><input class="inputField" name="magListe" type="text"></li>
                         <th:block th:each="mag, status : ${#lists.sort(formular.magListe)}">
                             <li>
                                 <p th:text="${mag.wort}">
@@ -45,7 +51,7 @@
                     <h2>Mag nicht</h2>
                     <p th:text="${maxWunsch}"></p>
                     <ul name="magNichtListe" class="custom-list">
-                        <li th:if="${#lists.size(formular.magNichtListe)} lt 5"><input name="magNichtListe" type="text">
+                        <li th:if="${#lists.size(formular.magNichtListe)} lt 5"><input class="inputField" name="magNichtListe" type="text">
                         </li>
                         <th:block th:each="magNicht, status : ${formular.magNichtListe}">
                             <li>
