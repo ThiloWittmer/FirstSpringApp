@@ -26,7 +26,9 @@
             </div>
             <div>
                 <p>Passwort</p>
-                <input class="inputField" name="passwort" type="password" th:field="*{password}">
+                <input class="inputField" name="password" type="password" th:field="*{password}" th:errorclass="inputError">
+                <p class="errorMessage" th:if="${#fields.hasErrors('password')}"
+                    th:errors="*{password}"></p>
             </div>
             <div>
                 <p>Geburtstag</p>

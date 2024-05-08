@@ -7,12 +7,16 @@ import java.util.Set;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import de.hsrm.mi.web.projekt.validators.GutesPasswort;
 import jakarta.validation.constraints.*;
 
 public class BenutzerFormular {
     private String name;
     private String mail;
+
+    @GutesPasswort(wort="siebzehn", ziffer="17")
     private String password;
+    
     @DateTimeFormat (iso = ISO.DATE)
     private LocalDate bday;
 
