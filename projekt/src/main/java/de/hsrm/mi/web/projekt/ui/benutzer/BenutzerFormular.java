@@ -15,7 +15,7 @@ public class BenutzerFormular {
     private String mail;
 
     @GutesPasswort(wort="siebzehn", ziffer="17")
-    private String password;
+    private String passwort;
     
     @DateTimeFormat (iso = ISO.DATE)
     private LocalDate bday;
@@ -34,7 +34,7 @@ public class BenutzerFormular {
     }
 
     @NotNull
-    @Size(min=3, max=80, message = "Namenlaenge von {min} bis {max}")
+    @Size(min=3, max=80)
     public String getName() {
         return name;
     }
@@ -43,12 +43,12 @@ public class BenutzerFormular {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswort() {
+        return passwort;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswort(String passwort) {
+        this.passwort = passwort;
     }
 
     @Past
