@@ -29,6 +29,7 @@ public class BenutzerController {
             @ModelAttribute("formular") BenutzerFormular form, Locale locale) {
         int maxWunsch = 5;
         m.addAttribute("sprache", locale.getDisplayLanguage());
+        m.addAttribute("langCode", locale.getLanguage());
         m.addAttribute("maxWunsch", "(max. " + maxWunsch + ")");
         m.addAttribute("benNr", (benNr));
         return "benutzerbearbeiten";

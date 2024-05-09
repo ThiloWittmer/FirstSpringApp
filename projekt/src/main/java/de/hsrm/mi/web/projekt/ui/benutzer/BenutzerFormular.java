@@ -14,7 +14,7 @@ public class BenutzerFormular {
     private String name;
     private String mail;
 
-    @GutesPasswort(wort="siebzehn", ziffer="17")
+    @GutesPasswort(wort="siebzehn", ziffer="17", message="{gutespasswort.fehler}")
     private String passwort;
     
     @DateTimeFormat (iso = ISO.DATE)
