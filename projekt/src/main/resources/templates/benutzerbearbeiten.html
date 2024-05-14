@@ -6,10 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" media="all" href="/styles.css" th:href="@{/styles.css}"/>
-    <title>Document</title>
+    <title>Benutzer bearbeiten</title>
 </head>
 
 <body>
+    <div th:replace="~{fragments/kopffuss :: header}"></div>
     <div class="container">
         <form th:action="@{#}" th:method="POST" th:object="${formular}">
             <h1 th:text="#{benutzerprofil.titel(${benNr})}">Titel</h1>
@@ -68,6 +69,7 @@
         </form>
 
     </div>
+    <div th:replace="~{fragments/kopffuss :: footer}"></div>
 </body>
 
 </html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:lang="${langCode}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="all" href="/styles.css" th:href="@{/styles.css}"/>
+    <title>Frags</title>
+</head>
+<body>
+    <nav class="navbar" th:fragment="header">
+        <div class="navcontent">
+            <a href="benutzer">Benutzer</a>
+            <div>
+                <a href="de">DE</a>
+                <a href="en">EN</a>
+                <a href="nl">NL</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="footer" th:fragment="footer">
+        <div class="footerContent">
+            <a href="impressum">Impressum</a>
+            <a href="kontakt">Kontakt</a>
+        </div>
+    </div>
+</body>
+</html>
