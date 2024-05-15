@@ -7,6 +7,7 @@ import java.util.Set;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.validators.GutesPasswort;
 import jakarta.validation.constraints.*;
 
@@ -84,5 +85,21 @@ public class BenutzerFormular {
         }
     }
 
+    public void toBenutzer(Benutzer b) {
+        b.setName(this.name);
+        b.setMail(this.mail);
+        b.setPassword(this.password);
+        b.setBday(this.bday);
+        b.setMagListe(this.magListe);
+        b.setMagNichtListe(this.magNichtListe);
+    }
     
+    public void fromBenutzer(Benutzer b) {
+        this.name = b.getName();
+        this.mail = b.getMail();
+        this.password = getPassword();
+        this.bday = getBday();
+        this.magListe = getMagListe();
+        this.magNichtListe = b.getMagNichtListe();
+    }
 }
