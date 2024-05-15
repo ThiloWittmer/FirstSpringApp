@@ -7,7 +7,6 @@ import java.util.Set;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
-import de.hsrm.mi.web.projekt.ui.benutzer.Vorliebe;
 import de.hsrm.mi.web.projekt.validators.GutesPasswort;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -36,10 +35,10 @@ public class Benutzer {
     private LocalDate bday;
     
     @ElementCollection
-    private Set<Vorliebe> magListe = new HashSet<Vorliebe>();
+    private Set<String> magListe = new HashSet<String>();
     
     @ElementCollection
-    private Set<Vorliebe> magNichtListe = new HashSet<Vorliebe>();
+    private Set<String> magNichtListe = new HashSet<String>();
     
     public long getId() {
         return id;
@@ -65,11 +64,11 @@ public class Benutzer {
         this.bday = bday;
     }
 
-    public void setMagListe(Set<Vorliebe> magListe) {
+    public void setMagListe(Set<String> magListe) {
         this.magListe = magListe;
     }
 
-    public void setMagNichtListe(Set<Vorliebe> magNichtListe) {
+    public void setMagNichtListe(Set<String> magNichtListe) {
         this.magNichtListe = magNichtListe;
     }
 
@@ -89,11 +88,11 @@ public class Benutzer {
         return bday;
     }
 
-    public Set<Vorliebe> getMagListe() {
+    public Set<String> getMagListe() {
         return magListe;
     }
 
-    public Set<Vorliebe> getMagNichtListe() {
+    public Set<String> getMagNichtListe() {
         return magNichtListe;
     }
 

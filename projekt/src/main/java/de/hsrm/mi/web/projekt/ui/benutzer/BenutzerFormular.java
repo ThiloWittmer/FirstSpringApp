@@ -21,8 +21,8 @@ public class BenutzerFormular {
     @DateTimeFormat (iso = ISO.DATE)
     private LocalDate bday;
 
-    private Set<Vorliebe> magListe = new HashSet<Vorliebe>();
-    private Set<Vorliebe> magNichtListe = new HashSet<Vorliebe>();
+    private Set<String> magListe = new HashSet<String>();
+    private Set<String> magNichtListe = new HashSet<String>();
 
 
     @Email
@@ -61,27 +61,23 @@ public class BenutzerFormular {
         this.bday = bday;
     }
 
-    public Set<Vorliebe> getMagListe() {
+    public Set<String> getMagListe() {
         return magListe;
     }
 
     public void setMagListe(String wort) {
         if(wort.length() > 0) {
-            Vorliebe vorl = new Vorliebe();
-            vorl.setWort(wort);
-            this.magListe.add(vorl);
+            this.magListe.add(wort);
         }
     }
 
-    public Set<Vorliebe> getMagNichtListe() {
+    public Set<String> getMagNichtListe() {
         return magNichtListe;
     }
 
     public void setMagNichtListe(String wort) {
         if(wort.length() > 0) {
-            Vorliebe vorl = new Vorliebe();
-            vorl.setWort(wort);
-            this.magNichtListe.add(vorl);
+            this.magNichtListe.add(wort);
         }
     }
 

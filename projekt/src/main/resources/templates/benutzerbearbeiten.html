@@ -40,11 +40,11 @@
                 <div id="mag" class="column">
                     <h2>Mag</h2>
                     <p th:text="${maxWunsch}"></p>
-                    <ul name="magLsite" class="custom-list">
+                    <ul name="magListe" class="custom-list">
                         <li th:if="${#lists.size(formular.magListe)} lt 5"><input class="inputField" name="magListe" type="text"></li>
                         <th:block th:each="mag, status : ${#lists.sort(formular.magListe)}">
                             <li>
-                                <p th:text="${mag.wort}">
+                                <p th:text="${mag}">
                             </li>
                         </th:block>
                     </ul>
@@ -57,7 +57,7 @@
                         </li>
                         <th:block th:each="magNicht, status : ${formular.magNichtListe}">
                             <li>
-                                <p th:text="${magNicht.wort}">
+                                <p th:text="${magNicht}">
                             </li>
                         </th:block>
                     </ul>
