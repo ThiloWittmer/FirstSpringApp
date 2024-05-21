@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +19,6 @@ public class BenutzerServiceImpl implements BenutzerService{
     private Benutzer benutzer;
     private BenutzerRepository repo;
 
-    @Autowired
     public BenutzerServiceImpl(Benutzer benutzer){
         this.benutzer = benutzer;
         logger.debug("BenutzerServiceImpl instanziiert mit Benutzer: {}", benutzer);
@@ -28,7 +26,6 @@ public class BenutzerServiceImpl implements BenutzerService{
 
     @Override
     public List<Benutzer> holeAlleBenutzer() {
-        // TODO Auto-generated method stub
         List<Benutzer> alleBenutzer = repo.findAll(Sort.by("name"));
         logger.debug("Gefundene Benutzer: {}", alleBenutzer);
         return alleBenutzer;
@@ -37,7 +34,6 @@ public class BenutzerServiceImpl implements BenutzerService{
 
     @Override
     public Optional<Benutzer> holeBenutzerMitId(long id) {
-        // TODO Auto-generated method stub
         Optional<Benutzer> benutzer = repo.findById(id);
         benutzer.ifPresent(b -> logger.debug("Gefundener Benutzer: {}", b));
         return benutzer;
@@ -45,14 +41,12 @@ public class BenutzerServiceImpl implements BenutzerService{
 
     @Override
     public Benutzer speichereBenutzer(Benutzer b) {
-        // TODO Auto-generated method stub
         benutzer = repo.save(b);
         return benutzer;
     }
 
     @Override
     public void loescheBenutzerMitId(long id) {
-        // TODO Auto-generated method stub
         repo.deleteById(id);
     }
 

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -11,6 +12,7 @@ import de.hsrm.mi.web.projekt.validators.GutesPasswort;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+@Configuration
 @Entity
 public class Benutzer {
     @Id
