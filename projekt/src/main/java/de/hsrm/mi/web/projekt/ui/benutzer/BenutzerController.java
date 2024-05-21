@@ -1,5 +1,6 @@
 package de.hsrm.mi.web.projekt.ui.benutzer;
 
+import java.util.Locale;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,10 +27,12 @@ public class BenutzerController {
 
     @GetMapping("/{benutzerNr}")
     public String benutzerProfil(@PathVariable("benutzerNr") long benNr, Model m,
-            @ModelAttribute("formular") BenutzerFormular form) {
+            @ModelAttribute("formular") BenutzerFormular form, Locale locale) {
         int maxWunsch = 5;
+        m.addAttribute("sprache", locale.getDisplayLanguage());
+        m.addAttribute("langCode", locale.getLanguage());
         m.addAttribute("maxWunsch", "(max. " + maxWunsch + ")");
-        m.addAttribute("ueberschrift", ("Benutzerprofil " + benNr + " bearbeiten"));
+        m.addAttribute("benNr", (benNr));
         return "benutzerbearbeiten";
     }
 
