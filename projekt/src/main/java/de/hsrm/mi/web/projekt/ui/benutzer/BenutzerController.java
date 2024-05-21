@@ -1,5 +1,6 @@
 package de.hsrm.mi.web.projekt.ui.benutzer;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,14 +10,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import de.hsrm.mi.web.projekt.services.benutzer.BenutzerService;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequestMapping("/benutzer")
-@SessionAttributes({ "formular", "ueberschrift", "benNr", "maxWunsch" })
+@SessionAttributes({ "formular", "ueberschrift", "benNr", "maxWunsch", "benutzer" })
 public class BenutzerController {
+
+    @Autowired private BenutzerService benutzerservice;
 
     @ModelAttribute("formular")
     public void creatForm(Model m) {
