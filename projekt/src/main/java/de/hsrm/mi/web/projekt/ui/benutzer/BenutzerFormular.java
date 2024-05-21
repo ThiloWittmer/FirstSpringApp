@@ -84,7 +84,7 @@ public class BenutzerFormular {
     public void toBenutzer(Benutzer b) {
         b.setName(this.name);
         b.setMail(this.mail);
-        b.setPassword(this.password);
+        b.setPassword(this.passwort);
         b.setBday(this.bday);
         b.setMagListe(this.magListe);
         b.setMagNichtListe(this.magNichtListe);
@@ -93,7 +93,7 @@ public class BenutzerFormular {
     public void fromBenutzer(Benutzer b) {
         this.name = b.getName();
         this.mail = b.getMail();
-        this.password = getPassword();
+        this.passwort = b.getPassword();
         this.bday = getBday();
         this.magListe = getMagListe();
         this.magNichtListe = b.getMagNichtListe();

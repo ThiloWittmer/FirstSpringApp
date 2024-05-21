@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import de.hsrm.mi.web.projekt.services.benutzer.BenutzerService;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @SessionAttributes({ "formular", "ueberschrift", "benNr", "maxWunsch", "benutzer" })
 public class BenutzerController {
 
+    private BenutzerService benutzerService;
 
     @ModelAttribute("formular")
     public void creatForm(Model m) {
@@ -33,6 +35,12 @@ public class BenutzerController {
         m.addAttribute("langCode", locale.getLanguage());
         m.addAttribute("maxWunsch", "(max. " + maxWunsch + ")");
         m.addAttribute("benNr", (benNr));
+        
+        if (benNr == 0) {
+            //m.addAttribute("benutzer", benutzerService.speichereBenutzer(null));
+        } else {
+            //
+        }
         return "benutzerbearbeiten";
     }
 

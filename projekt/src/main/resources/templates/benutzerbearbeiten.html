@@ -13,7 +13,7 @@
     <div th:replace="~{fragments/kopffuss :: header}"></div>
     <div class="container">
         <form th:action="@{#}" th:method="POST" th:object="${formular}">
-            <h1 th:text="#{benutzerprofil.titel(${benNr})}">Titel</h1>
+            <h1 th:text="${benNr}? #{benutzerprofil.titel(${benNr})} : #{benutzerprofil.titel.neu}">Titel</h1>
             <div>
                 <p th:text="#{benutzer.name}"></p>
                 <input class="inputField" name="name" type="text" th:field="*{name}" th:errorclass="inputError">
