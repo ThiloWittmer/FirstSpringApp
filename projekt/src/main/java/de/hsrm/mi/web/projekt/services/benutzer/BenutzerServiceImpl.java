@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +15,12 @@ import de.hsrm.mi.web.projekt.entities.benutzer.BenutzerRepository;
 public class BenutzerServiceImpl implements BenutzerService{
     private static final Logger logger = LoggerFactory.getLogger(BenutzerServiceImpl.class);
 
-    private Benutzer benutzer;
+
     private BenutzerRepository repo;
 
-    public BenutzerServiceImpl(Benutzer benutzer){
-        this.benutzer = benutzer;
-        logger.debug("BenutzerServiceImpl instanziiert mit Benutzer: {}", benutzer);
+    
+    public BenutzerServiceImpl(BenutzerRepository repo){
+        this.repo = repo;
     }
 
     @Override
@@ -41,15 +40,12 @@ public class BenutzerServiceImpl implements BenutzerService{
 
     @Override
     public Benutzer speichereBenutzer(Benutzer b) {
-        benutzer = repo.save(b);
-        return benutzer;
+        return repo.save(b);
     }
 
     @Override
     public void loescheBenutzerMitId(long id) {
         repo.deleteById(id);
     }
-
-    
     
 }
