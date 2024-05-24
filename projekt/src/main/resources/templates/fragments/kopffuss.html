@@ -11,6 +11,9 @@
     <nav class="navbar" th:fragment="header">
         <div class="navcontent">
             <a href="benutzer">Benutzer</a>
+            <div th:if="${info}">
+                <p class="info" th:text="${info}"></p>
+            </div>
             <div>
                 <a th:href="@{?sprache=de}">DE</a>
                 <a th:href="@{?sprache=en}">EN</a>

@@ -2,7 +2,6 @@ package de.hsrm.mi.web.projekt.ui.benutzer;
 
 import java.util.Locale;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,20 +57,28 @@ public class BenutzerController {
     }
     
     @PostMapping("{benNr}")
-    public String postForm(@Valid @ModelAttribute("formular") BenutzerFormular form, @ModelAttribute("benNr") long benNr,
-    BindingResult formErrors, Model m, @ModelAttribute("benutzer") Benutzer benutzer) {
-
+    public String postForm(@Valid @ModelAttribute("formular") BenutzerFormular form, BindingResult formErrors,
+    @ModelAttribute("benNr") long benNr, Model m, @ModelAttribute("benutzer") Benutzer benutzer) {
+        
         String pw = form.getPasswort();
-        form.toBenutzer(benutzer);
-
-        if (pw.length() > 0 && (pw.contains("17") || pw.toLowerCase().contains("siebzehn"))) {
-            benutzer.setPassword(pw);
-        } else if (benutzerService.holeBenutzerMitId(benNr) == null || pw.length() > 0) {
-            //error message
-
+        
+        if (formErrors.hasErrors()) {
+            formErrors.rejectValue("passwort", "benutzer.passwort.ungesetzt", "Passwort wurde noch nicht gesetzt");
+            return "benutzerbearbeiten";
         }
-
-        benutzerService.speichereBenutzer(benutzer);
+        
+        if (benutzerService.holeBenutzerMitId(benNr).isEmpty() && pw.length() == 0) {
+            formErrors.rejectValue("passwort", "benutzer.passwort.ungesetzt", "Passwort wurde noch nicht gesetzt");
+            return "benutzerbearbeiten";
+        }
+        
+        try {
+            form.toBenutzer(benutzer);
+            benutzerService.speichereBenutzer(benutzer);
+        } catch (Exception e) {
+            String excMsg = e.getLocalizedMessage();
+            m.addAttribute("info", excMsg);
+        }
 
         return "benutzerbearbeiten";
     }
