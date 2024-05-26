@@ -1,5 +1,6 @@
 package de.hsrm.mi.web.projekt.ui.benutzer;
 
+import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 @SessionAttributes({ "formular", "ueberschrift", "benNr", "maxWunsch", "benutzer" })
 public class BenutzerController {
 
-    @Autowired private BenutzerService benutzerService;
+    @Autowired
+    private BenutzerService benutzerService;
 
     @ModelAttribute("formular")
     public void creatForm(Model m) {
         m.addAttribute("formular", new BenutzerFormular());
+    }
+
+    @GetMapping
+    public String getAllBenutzer(Model m) {
+        List<Benutzer> benutzerList = benutzerService.holeAlleBenutzer();
+        m.addAttribute("benutzerList", benutzerList);
+        return "benutzerliste";
+    }
+
+    @GetMapping("/{id}/del")
+    public String deleteBenutzer(@PathVariable("id") Long id) {
+        benutzerService.loescheBenutzerMitId(id);
+        return "redirect:/benutzer";
     }
 
     @GetMapping("/{benutzerNr}")
@@ -38,8 +53,8 @@ public class BenutzerController {
         m.addAttribute("langCode", locale.getLanguage());
         m.addAttribute("maxWunsch", "(max. " + maxWunsch + ")");
         m.addAttribute("benNr", (benNr));
-        
-        if(benNr == 0) {
+
+        if (benNr == 0) {
             Benutzer benutzer = new Benutzer();
             BenutzerFormular bForm = new BenutzerFormular();
 
@@ -49,30 +64,30 @@ public class BenutzerController {
             Benutzer benutzer;
             benutzer = benutzerService.holeBenutzerMitId(benNr).get();
             form.fromBenutzer(benutzer);
-            
+
             m.addAttribute("benutzer", benutzer);
             m.addAttribute("formular", form);
         }
         return "benutzerbearbeiten";
     }
-    
+
     @PostMapping("{benNr}")
     public String postForm(@Valid @ModelAttribute("formular") BenutzerFormular form, BindingResult formErrors,
-    @ModelAttribute("benNr") long benNr, Model m, @ModelAttribute("benutzer") Benutzer benutzer) {
-        
+            @ModelAttribute("benNr") long benNr, Model m, @ModelAttribute("benutzer") Benutzer benutzer) {
+
         String pw = form.getPasswort();
 
         if (formErrors.hasErrors()) {
             return "benutzerbearbeiten";
         }
-        
-        //Benutzer existiert noch nicht und kein gueltiges Passwort
+
+        // Benutzer existiert noch nicht und kein gueltiges Passwort
         if (pw.length() == 0 && benutzerService.holeBenutzerMitId(benNr).isEmpty()) {
             formErrors.rejectValue("passwort", "benutzer.passwort.ungesetzt", "Passwort wurde noch nicht gesetzt");
             return "benutzerbearbeiten";
         }
 
-        //Wenn der Benutzer nicht schon existiert und das Passwortfeld leer ist
+        // Wenn der Benutzer nicht schon existiert und das Passwortfeld leer ist
         if (!(benutzerService.holeBenutzerMitId(benNr).isPresent() && pw.length() == 0)) {
             benutzer.setPassword(pw);
         }
@@ -85,7 +100,7 @@ public class BenutzerController {
             m.addAttribute("info", excMsg);
         }
 
-        if (benNr > 0) {            
+        if (benNr > 0) {
             return "benutzerbearbeiten";
         }
 

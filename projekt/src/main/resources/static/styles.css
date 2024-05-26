@@ -60,6 +60,18 @@ body {
     padding-right: 15em;
 }
 
+.containerliste{
+    display: flex;
+    flex-direction: column;
+    background: #9d99999f;
+    min-height: 100%;
+    border-radius: 5px;
+    padding-top: 10%;
+    padding-left: 15em;
+    padding-right: 15em;
+    text-align: left;
+    align-items: baseline;
+}
 
 .row {
     display: flex;
