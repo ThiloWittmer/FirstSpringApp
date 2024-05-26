@@ -12,17 +12,21 @@
     <div th:replace="~{fragments/kopffuss :: header}"></div>
     <div class="containerliste">
         <h1 th:text="#{benutzerliste.titel}">Benutzerliste</h1>
-        <table>
-                <tr th:each="benutzer : ${benutzerListe}">
-                    <td th:text="${benutzer.name}"></td>
-                    <td th:text="${benutzer.email}"></td>
-                    <td>
-                        <a th:href="@{/benutzer/{id}(id=${benutzer.id})}" th:text="#{benutzerliste.eintrag.bearbeiten}">Bearbeiten</a>
-                        <a th:href="@{/benutzer/{id}/del(id=${benutzer.id})}" th:text="#{benutzerliste.eintrag.loeschen}">Löschen</a>
-                    </td>
-                </tr>
-        </table>
-        <a th:href="@{/benutzer/0}" th:text="#{benutzerliste.neu}">Neuer Benutzer</a>
+        <ul class="custom-list">
+            <th:block th:each="benutzer : ${benutzerListe}">
+                <li>
+                    <div>
+                        <p th:text="${benutzer.id}"></p>
+                        <p th:text="${benutzer.name}"></p>
+                        <p th:text="${benutzer.mail}"></p>
+                        <p th:text="${benutzer.bday}"></p>
+                        <a class="editUsr" th:href="@{/benutzer/{id}(id=${benutzer.id})}" th:text="#{benutzerliste.eintrag.bearbeiten}">Bearbeiten</a>
+                        <a class="delUsr" th:href="@{/benutzer/{id}/del(id=${benutzer.id})}" th:text="#{benutzerliste.eintrag.loeschen}">Löschen</a>
+                    </div>
+                </li>
+            </th:block>
+        </ul>
+        <a class="newUsr" th:href="@{/benutzer/0}" th:text="#{benutzerliste.neu}">Neuer Benutzer</a>
     </div>
     <div th:replace="~{fragments/kopffuss :: footer}"></div>
 </body>

@@ -73,6 +73,42 @@ body {
     align-items: baseline;
 }
 
+.containerliste ul {
+    width: 70%;
+}
+
+.containerliste ul li div {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.delUsr, .editUsr {
+    text-decoration: none;
+    color: black;
+    border-radius: 5px;
+    border-style: groove;
+    
+    padding: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+.delUsr {
+    background-color: rgb(255, 100, 100);
+}
+
+.delUsr:hover {
+    background-color: rgb(255, 20, 20);
+}
+
+.editUsr {
+    background-color: white;
+}
+
+.editUsr:hover {
+    background-color: lightgray;
+}
+
 .row {
     display: flex;
 }
@@ -89,7 +125,7 @@ body {
 }
 
 
-input[type="submit"] {
+input[type="submit"], .containerliste .newUsr {
     padding: 10px 20px;
     font-size: 16px;
     background-color: #4CAF50;
@@ -99,9 +135,10 @@ input[type="submit"] {
     cursor: pointer;
     margin-top: 20px;
     margin-bottom: 20px;
+    text-decoration: none;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover, .containerliste .newUsr:hover{
     background-color: #45a049;
 }
 
@@ -118,13 +155,13 @@ ul.custom-list {
     margin: 0;
 }
 
-ul.custom-list li {
-    border-top: 1px solid #ccc;
-    padding: 8px;
-}
 
 ul.custom-list li:first-child {
     border-top: none;
+}
+ul.custom-list li {
+    border-top: 1px solid #ccc;
+    padding: 8px;
 }
 
 input[type="text"]:hover {

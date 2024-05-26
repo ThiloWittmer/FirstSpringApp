@@ -92,8 +92,8 @@ public class BenutzerFormular {
     public void fromBenutzer(Benutzer b) {
         this.name = b.getName();
         this.mail = b.getMail();
-        this.bday = getBday();
-        this.magListe = getMagListe();
+        this.bday = b.getBday();
+        this.magListe = b.getMagListe();
         this.magNichtListe = b.getMagNichtListe();
     }
 }
