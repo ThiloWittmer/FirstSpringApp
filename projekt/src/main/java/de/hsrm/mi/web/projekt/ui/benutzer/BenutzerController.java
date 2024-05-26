@@ -61,17 +61,22 @@ public class BenutzerController {
     @ModelAttribute("benNr") long benNr, Model m, @ModelAttribute("benutzer") Benutzer benutzer) {
         
         String pw = form.getPasswort();
-        
+
         if (formErrors.hasErrors()) {
-            formErrors.rejectValue("passwort", "benutzer.passwort.ungesetzt", "Passwort wurde noch nicht gesetzt");
             return "benutzerbearbeiten";
         }
         
-        if (benutzerService.holeBenutzerMitId(benNr).isEmpty() && pw.length() == 0) {
+        //Benutzer existiert noch nicht und kein gueltiges Passwort
+        if (pw.length() == 0 && benutzerService.holeBenutzerMitId(benNr).isEmpty()) {
             formErrors.rejectValue("passwort", "benutzer.passwort.ungesetzt", "Passwort wurde noch nicht gesetzt");
             return "benutzerbearbeiten";
         }
-        
+
+        //Wenn der Benutzer nicht schon existiert und das Passwortfeld leer ist
+        if (!(benutzerService.holeBenutzerMitId(benNr).isPresent() && pw.length() == 0)) {
+            benutzer.setPassword(pw);
+        }
+
         try {
             form.toBenutzer(benutzer);
             benutzerService.speichereBenutzer(benutzer);
@@ -80,7 +85,11 @@ public class BenutzerController {
             m.addAttribute("info", excMsg);
         }
 
-        return "benutzerbearbeiten";
+        if (benNr > 0) {            
+            return "benutzerbearbeiten";
+        }
+
+        return "redirect:/benutzer/" + benutzer.getId();
     }
 
 }
