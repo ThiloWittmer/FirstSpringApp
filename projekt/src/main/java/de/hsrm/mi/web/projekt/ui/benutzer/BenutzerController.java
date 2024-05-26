@@ -98,6 +98,7 @@ public class BenutzerController {
         } catch (Exception e) {
             String excMsg = e.getLocalizedMessage();
             m.addAttribute("info", excMsg);
+            return "benutzerbearbeiten";
         }
 
         if (benNr > 0) {
