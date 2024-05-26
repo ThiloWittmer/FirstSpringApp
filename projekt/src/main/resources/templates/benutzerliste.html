@@ -13,7 +13,7 @@
     <div class="containerliste">
         <h1 th:text="#{benutzerliste.titel}">Benutzerliste</h1>
         <table>
-                <tr th:each="benutzer : ${benutzerList}">
+                <tr th:each="benutzer : ${benutzerListe}">
                     <td th:text="${benutzer.name}"></td>
                     <td th:text="${benutzer.email}"></td>
                     <td>

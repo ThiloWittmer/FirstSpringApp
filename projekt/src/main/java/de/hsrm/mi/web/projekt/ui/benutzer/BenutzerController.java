@@ -34,8 +34,8 @@ public class BenutzerController {
 
     @GetMapping
     public String getAllBenutzer(Model m) {
-        List<Benutzer> benutzerList = benutzerService.holeAlleBenutzer();
-        m.addAttribute("benutzerList", benutzerList);
+        List<Benutzer> benutzerListe = benutzerService.holeAlleBenutzer();
+        m.addAttribute("benutzerList", benutzerListe);
         return "benutzerliste";
     }
 

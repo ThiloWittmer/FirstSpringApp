@@ -28,7 +28,6 @@ public class BenutzerServiceImpl implements BenutzerService{
         List<Benutzer> alleBenutzer = repo.findAll(Sort.by("name"));
         logger.debug("Gefundene Benutzer: {}", alleBenutzer);
         return alleBenutzer;
-
     }
 
     @Override
