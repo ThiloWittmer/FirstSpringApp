@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${langCode}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="all" href="/styles.css" th:href="@{/styles.css}"/>
+    <title>Tour bearbeiten</title>
+</head>
+
+<body>
+    <div th:replace="~{fragments/kopffuss :: header}"></div>
+    <div class="container">
+        <form th:action="@{#}" th:method="POST" th:object="${tourForm}">
+            <h1 th:text="${tourNr}? #{tourformular.titel(${tourNr})} : #{tourformular.titel.neu}">Titel</h1>
+            <div>
+                <label th:text="#{tour.anbieter}"></label>
+                <select th:field="*{anbieter}">
+                    <option th:each="anb : ${benutzerListe}" th:value="${anb}" th:text="${anb.name}"></option>
+                </select>
+            </div>
+            <div>
+                <label th:text="#{tour.abfahrdatetime}"></label>
+                <input class="inputField" type="datetime-local" th:field="*{abfahrDateTime}" th:errorclass="inputError">
+            </div>
+            <div>
+                <label th:text="#{tour.preis}"></label>
+                <input class="inputField" type="text" th:field="*{preis}" th:errorclass="inputError">
+            </div>
+            <div>
+                <label th:text="tour.plaetze"></label>
+                <input class="inputField" type="text" th:field="*{plaetze}" th:errorclass="inputError">
+            </div>
+            <div class="tourEditOrte">
+                <div>
+                    <label th:text="#{tour.startort}"></label>
+                    <select th:field="*{startOrt}">
+                        <option th:each="ort : ${ortListe}" th:value="${ort}" th:text="${ort.name}"></option>
+                    </select>
+                </div>
+                <div>
+                    <label th:text="#{tour.zielort}"></label>
+                    <select th:field="*{zielOrt}">
+                        <option th:each="ort : ${ortListe}" th:value="${ort}" th:text="${ort.name}"></option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <label th:text="#{tour.fahrgastinfos}"></label>
+                <textarea class="inputField" rows="4" th:field="*{info}" th:errorclass="inputError">
+            </div>
+            <input type="submit" value="ok">
+        </form>
+    </div>
+    <div th:replace="~{fragments/kopffuss :: footer}"></div>
+
+</body>
+</html>

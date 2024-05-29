@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${langCode}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="all" href="/styles.css" th:href="@{/styles.css}"/>
+    <title>Benutzer bearbeiten</title>
+</head>
+
+<body>
+    <div th:replace="~{fragments/kopffuss :: header}"></div>
+    <div class="containerliste">
+        <h1 th:text="#{tourliste.titel}">Touren</h1>
+        <ul class="custom-list">
+            <th:block th:each="benutzer : ${tourListe}">
+                <li>
+                    <div>
+                        <p th:text="${tour.id}"></p>
+                        <p th:text="${tour.abfahrDateTime}"></p>
+                        <p th:text="${tour.preis}"></p>
+                        <p th:text="${tour.plaetze}"></p>
+                        <a class="tourlistOrt" th:href="@{/ort/{id}(id=${tour.startOrt.id})}" th:text="${tour.startOrt}"></a>
+                        <a class="tourlistOrt" th:href="@{/ort/{id}(id=${tour.zielOrt.id})}" th:text="${tour.zielOrt}"></a>
+                        <p th:text="${tour.anbieter}"></p>
+                        <a class="editUsr" th:href="@{/tour/{id}(id=${tour.id})}" th:text="#{tourliste.eintrag.bearbeiten}">Bearbeiten</a>
+                        <a class="delUsr" th:href="@{/tour/{id}/del(id=${tour.id})}" th:text="#{tourliste.eintrag.loeschen}">Löschen</a>
+                    </div>
+                </li>
+            </th:block>
+        </ul>
+        <a class="newUsr" th:href="@{/tour/0}" th:text="#{tourliste.neu}">Neue Tour</a>
+    </div>
+    <div th:replace="~{fragments/kopffuss :: footer}"></div>
+</body>
+</html>
