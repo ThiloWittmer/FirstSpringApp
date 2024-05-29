@@ -10,16 +10,13 @@ import org.springframework.stereotype.Service;
 
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.entities.benutzer.BenutzerRepository;
-
 @Service
-public class BenutzerServiceImpl implements BenutzerService{
+public class BenutzerServiceImpl implements BenutzerService {
     private static final Logger logger = LoggerFactory.getLogger(BenutzerServiceImpl.class);
-
 
     private BenutzerRepository repo;
 
-    
-    public BenutzerServiceImpl(BenutzerRepository repo){
+    public BenutzerServiceImpl(BenutzerRepository repo) {
         this.repo = repo;
     }
 
@@ -46,5 +43,5 @@ public class BenutzerServiceImpl implements BenutzerService{
     public void loescheBenutzerMitId(long id) {
         repo.deleteById(id);
     }
-    
+
 }

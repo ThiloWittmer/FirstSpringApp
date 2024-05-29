@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="all" href="/styles.css" th:href="@{/styles.css}" />
+    <title th:text="#{ortformular.titel}">Ortliste</title>
+</head>
+
+<body>
+    <div th:replace="~{fragments/kopffuss :: header}"></div>
+    <div class="containerliste">
+        <h1 th:text="#{ortsliste.titel}">Ortliste</h1>
+        <ul class="custom-list">
+            <th:block th:each="ort : ${ortsListe}">
+                <li>
+                    <div>
+                        <p th:text="${ort.id}"></p>
+                        <p th:text="${ort.name}"></p>
+                        <p th:text="${ort.geobreite}"></p>
+                        <p th:text="${ort.geolaenge}"></p>
+                        <a class="map" href="https://openstreetmap.org" th:text="#{ort.link.karte}">Karte</a>
+                        <a class="editOrt" th:href="@{/ort/{id}(id=${ort.id})}" th:text="#{ortsliste.eintrag.bearbeiten}">Bearbeiten</a>
+                        <a class="delOrt" th:href="@{/ort/{id}/del(id=${ort.id})}" th:text="#{ortsliste.eintrag.loeschen}">Löschen</a>
+                    </div>
+                </li>
+            </th:block>
+        </ul>
+        <a class="newOrt" th:href="@{/ort/0}" th:text="#{ortsliste.neu}">Neuer Ort</a>
+    </div>
+    <div th:replace="~{fragments/kopffuss :: footer}"></div>
+</body>
+
+</html>

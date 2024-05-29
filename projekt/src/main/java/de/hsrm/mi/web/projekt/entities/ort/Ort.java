@@ -63,5 +63,4 @@ public class Ort {
         this.geolaenge = geolaenge;
     }
 
-    
 }
