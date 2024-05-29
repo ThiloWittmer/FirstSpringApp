@@ -33,9 +33,9 @@
             </div>
             <div>
                 <p th:text="#{benutzer.geburtstag}"></p>
-                <input class="inputField" name="geburtstag" type="date" th:field="*{bday}" th:errorclass="inputError">
-                <p class="errorMessage" th:if="${#fields.hasErrors('bday')}"
-                    th:errors="*{bday}"></p>
+                <input class="inputField" name="geburtstag" type="date" th:field="*{geburtstag}" th:errorclass="inputError">
+                <p class="errorMessage" th:if="${#fields.hasErrors('geburtstag')}"
+                    th:errors="*{geburtstag}"></p>
             </div>
             <div class="row">
                 <div id="mag" class="column">

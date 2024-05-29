@@ -19,7 +19,7 @@ public class BenutzerFormular {
     private String passwort;
     
     @DateTimeFormat (iso = ISO.DATE)
-    private LocalDate bday;
+    private LocalDate geburtstag;
 
     private Set<String> magListe = new HashSet<String>();
     private Set<String> magNichtListe = new HashSet<String>();
@@ -53,12 +53,13 @@ public class BenutzerFormular {
     }
 
     @Past
-    public LocalDate getBday() {
-        return bday;
+    @NotNull
+    public LocalDate getGeburtstag() {
+        return geburtstag;
     }
 
-    public void setBday(LocalDate bday) {
-        this.bday = bday;
+    public void setGeburtstag(LocalDate geburtstag) {
+        this.geburtstag = geburtstag;
     }
 
     public Set<String> getMagListe() {
@@ -84,7 +85,7 @@ public class BenutzerFormular {
     public void toBenutzer(Benutzer b) {
         b.setName(this.name);
         b.setMail(this.mail);
-        b.setBday(this.bday);
+        b.setGeburtstag(this.geburtstag);
         b.setMagListe(this.magListe);
         b.setMagNichtListe(this.magNichtListe);
     }
@@ -92,7 +93,7 @@ public class BenutzerFormular {
     public void fromBenutzer(Benutzer b) {
         this.name = b.getName();
         this.mail = b.getMail();
-        this.bday = b.getBday();
+        this.geburtstag = b.getGeburtstag();
         this.magListe = b.getMagListe();
         this.magNichtListe = b.getMagNichtListe();
     }

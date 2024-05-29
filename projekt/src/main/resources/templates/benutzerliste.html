@@ -19,7 +19,7 @@
                         <p th:text="${benutzer.id}"></p>
                         <p th:text="${benutzer.name}"></p>
                         <p th:text="${benutzer.mail}"></p>
-                        <p th:text="${benutzer.bday}"></p>
+                        <p th:text="${benutzer.geburtstag}"></p>
                         <a class="editUsr" th:href="@{/benutzer/{id}(id=${benutzer.id})}" th:text="#{benutzerliste.eintrag.bearbeiten}">Bearbeiten</a>
                         <a class="delUsr" th:href="@{/benutzer/{id}/del(id=${benutzer.id})}" th:text="#{benutzerliste.eintrag.loeschen}">Löschen</a>
                     </div>
