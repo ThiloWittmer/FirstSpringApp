@@ -21,15 +21,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequestMapping("/benutzer")
-@SessionAttributes({ "formular", "ueberschrift", "benNr", "maxWunsch", "benutzer" })
+@SessionAttributes({ "benutzerForm", "ueberschrift", "benNr", "maxWunsch", "benutzer" })
 public class BenutzerController {
 
     @Autowired
     private BenutzerService benutzerService;
 
-    @ModelAttribute("formular")
+    @ModelAttribute("benutzerForm")
     public void creatForm(Model m) {
-        m.addAttribute("formular", new BenutzerFormular());
+        m.addAttribute("benutzerForm", new BenutzerFormular());
     }
 
     @GetMapping
@@ -47,7 +47,7 @@ public class BenutzerController {
 
     @GetMapping("/{benutzerNr}")
     public String benutzerProfil(@PathVariable("benutzerNr") long benNr, Model m,
-            @ModelAttribute("formular") BenutzerFormular form, Locale locale) {
+            @ModelAttribute("benutzerForm") BenutzerFormular benutzerForm, Locale locale) {
         int maxWunsch = 5;
         m.addAttribute("sprache", locale.getDisplayLanguage());
         m.addAttribute("langCode", locale.getLanguage());
@@ -59,23 +59,23 @@ public class BenutzerController {
             BenutzerFormular bForm = new BenutzerFormular();
 
             m.addAttribute("benutzer", benutzer);
-            m.addAttribute("formular", bForm);
+            m.addAttribute("benutzerForm", bForm);
         } else {
             Benutzer benutzer;
             benutzer = benutzerService.holeBenutzerMitId(benNr).get();
-            form.fromBenutzer(benutzer);
+            benutzerForm.fromBenutzer(benutzer);
 
             m.addAttribute("benutzer", benutzer);
-            m.addAttribute("formular", form);
+            m.addAttribute("benutzerForm", benutzerForm);
         }
         return "benutzer/benutzerbearbeiten";
     }
 
     @PostMapping("{benNr}")
-    public String postForm(@Valid @ModelAttribute("formular") BenutzerFormular form, BindingResult formErrors,
+    public String postForm(@Valid @ModelAttribute("benutzerForm") BenutzerFormular benutzerForm, BindingResult formErrors,
             @ModelAttribute("benNr") long benNr, Model m, @ModelAttribute("benutzer") Benutzer benutzer) {
 
-        String pw = form.getPasswort();
+        String pw = benutzerForm.getPasswort();
 
         if (formErrors.hasErrors()) {
             return "benutzer/benutzerbearbeiten";
@@ -93,7 +93,7 @@ public class BenutzerController {
         }
 
         try {
-            form.toBenutzer(benutzer);
+            benutzerForm.toBenutzer(benutzer);
             benutzerService.speichereBenutzer(benutzer);
         } catch (Exception e) {
             String excMsg = e.getLocalizedMessage();

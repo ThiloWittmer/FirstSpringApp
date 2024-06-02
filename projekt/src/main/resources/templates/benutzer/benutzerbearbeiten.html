@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" media="all" href="/styles.css" th:href="@{/styles.css}"/>
-    <title>Benutzer bearbeiten</title>
+    <title th:text="${benNr}? #{benutzerprofil.titel(${benNr})} : #{benutzerprofil.titel.neu}">Benutzer bearbeiten</title>
 </head>
 
 <body>
     <div th:replace="~{fragments/kopffuss :: header}"></div>
     <div class="container">
-        <form th:action="@{#}" th:method="POST" th:object="${formular}">
+        <form th:action="@{#}" th:method="POST" th:object="${benutzerForm}">
             <h1 th:text="${benNr}? #{benutzerprofil.titel(${benNr})} : #{benutzerprofil.titel.neu}">Titel</h1>
             <div>
                 <p th:text="#{benutzer.name}"></p>
@@ -42,8 +42,8 @@
                     <h2 th:text="#{benutzer.magich}"></h2>
                     <p th:text="${maxWunsch}"></p>
                     <ul name="magListe" class="custom-list">
-                        <li th:if="${#lists.size(formular.magListe)} lt 5"><input class="inputField" name="magListe" type="text"></li>
-                        <th:block th:each="mag, status : ${#lists.sort(formular.magListe)}">
+                        <li th:if="${#lists.size(benutzerForm.magListe)} lt 5"><input class="inputField" name="magListe" type="text"></li>
+                        <th:block th:each="mag, status : ${#lists.sort(benutzerForm.magListe)}">
                             <li>
                                 <p th:text="${mag}">
                             </li>
@@ -54,9 +54,9 @@
                     <h2 th:text="#{benutzer.magichnicht}"></h2>
                     <p th:text="${maxWunsch}"></p>
                     <ul name="magNichtListe" class="custom-list">
-                        <li th:if="${#lists.size(formular.magNichtListe)} lt 5"><input class="inputField" name="magNichtListe" type="text">
+                        <li th:if="${#lists.size(benutzerForm.magNichtListe)} lt 5"><input class="inputField" name="magNichtListe" type="text">
                         </li>
-                        <th:block th:each="magNicht, status : ${formular.magNichtListe}">
+                        <th:block th:each="magNicht, status : ${benutzerForm.magNichtListe}">
                             <li>
                                 <p th:text="${magNicht}">
                             </li>

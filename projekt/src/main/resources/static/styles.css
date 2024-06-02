@@ -173,7 +173,7 @@ select,
 }
 
 
-input[type="submit"], .containerliste .newUsr {
+input[type="submit"], .containerliste .newUsr, .containerliste .newOrt {
     padding: 10px 20px;
     font-size: 16px;
     background-color: #4CAF50;

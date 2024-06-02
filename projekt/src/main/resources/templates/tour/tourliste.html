@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" media="all" href="/styles.css" th:href="@{/styles.css}"/>
-    <title>Benutzer bearbeiten</title>
+    <title th:text="#{tourliste.titel}"></title>
 </head>
 
 <body>
@@ -19,9 +19,9 @@
                         <p th:text="${tour.abfahrDateTime}"></p>
                         <p th:text="${tour.preis}"></p>
                         <p th:text="${tour.plaetze}"></p>
-                        <a class="tourlistOrt" th:href="@{/ort/{id}(id=${tour.startOrt.id})}" th:text="${tour.startOrt}"></a>
-                        <a class="tourlistOrt" th:href="@{/ort/{id}(id=${tour.zielOrt.id})}" th:text="${tour.zielOrt}"></a>
-                        <p th:text="${tour.anbieter}"></p>
+                        <a class="tourlistOrt" th:href="@{/ort/{id}(id=${tour.startOrt.id})}" th:text="${tour.startOrt.name}"></a>
+                        <a class="tourlistOrt" th:href="@{/ort/{id}(id=${tour.zielOrt.id})}" th:text="${tour.zielOrt.name}"></a>
+                        <p th:text="${tour.anbieter.name}"></p>
                         <a class="editUsr" th:href="@{/tour/{id}(id=${tour.id})}" th:text="#{tourliste.eintrag.bearbeiten}">Bearbeiten</a>
                         <a class="delUsr" th:href="@{/tour/{id}/del(id=${tour.id})}" th:text="#{tourliste.eintrag.loeschen}">Löschen</a>
                     </div>

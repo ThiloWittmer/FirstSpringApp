@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import de.hsrm.mi.web.projekt.services.benutzer.BenutzerService;
+import de.hsrm.mi.web.projekt.services.ort.OrtService;
 import de.hsrm.mi.web.projekt.services.tour.TourService;
 import jakarta.validation.Valid;
 
@@ -30,6 +31,9 @@ public class TourController {
 
     @Autowired
     private TourService tourService;
+
+    @Autowired
+    private OrtService ortService;
     
     @ModelAttribute
     public void createForm(Model m) {
@@ -49,7 +53,7 @@ public class TourController {
         m.addAttribute("langCode", locale.getLanguage());
         m.addAttribute("tourNr", tourNr);
         m.addAttribute("benutzerListe", benutzerService.holeAlleBenutzer());
-        //ortListe
+        m.addAttribute("ortListe", ortService.holeAlleOrte());
 
         
         if(tourNr == 0) {
