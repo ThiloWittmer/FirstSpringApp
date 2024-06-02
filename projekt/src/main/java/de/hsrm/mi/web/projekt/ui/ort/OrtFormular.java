@@ -35,16 +35,16 @@ public class OrtFormular {
         this.geolaenge = geolaenge;
     }
 
-    public void fromOrt(Ort o) {
-        this.name = o.getName();
-        this.geobreite = o.getGeobreite();
-        this.geolaenge = o.getGeolaenge();
-    }
-
     public void toOrt(Ort o) {
         o.setName(this.name);
         o.setGeobreite(this.geobreite);
         o.setGeolaenge(this.geolaenge);
+    }
+
+    public void fromOrt(Ort o) {
+        this.name = o.getName();
+        this.geobreite = o.getGeobreite();
+        this.geolaenge = o.getGeolaenge();
     }
 
 }

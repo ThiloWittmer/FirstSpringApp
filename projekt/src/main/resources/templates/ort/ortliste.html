@@ -15,14 +15,17 @@
         <ul class="custom-list">
             <th:block th:each="ort : ${ortsListe}">
                 <li>
-                    <div>
+                    <div class="listview">
                         <p th:text="${ort.id}"></p>
                         <p th:text="${ort.name}"></p>
                         <p th:text="${ort.geobreite}"></p>
                         <p th:text="${ort.geolaenge}"></p>
-                        <a class="map" href="https://openstreetmap.org" th:text="#{ort.link.karte}">Karte</a>
-                        <a class="editOrt" th:href="@{/ort/{id}(id=${ort.id})}" th:text="#{ortsliste.eintrag.bearbeiten}">Bearbeiten</a>
-                        <a class="delOrt" th:href="@{/ort/{id}/del(id=${ort.id})}" th:text="#{ortsliste.eintrag.loeschen}">Löschen</a>
+                        <a class="editUsr" th:href="|https://www.openstreetmap.org/#map=14/${ort.geobreite}/${ort.geolaenge}|"
+                            target="_blank" th:text="#{ort.link.karte}">Karte</a>
+                        <a class="editUsr" th:href="@{/ort/{id}(id=${ort.id})}"
+                            th:text="#{ortsliste.eintrag.bearbeiten}">Bearbeiten</a>
+                        <a class="delUsr" th:href="@{/ort/{id}/del(id=${ort.id})}"
+                            th:text="#{ortsliste.eintrag.loeschen}">Löschen</a>
                     </div>
                 </li>
             </th:block>

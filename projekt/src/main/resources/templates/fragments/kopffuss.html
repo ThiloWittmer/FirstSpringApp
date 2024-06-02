@@ -10,7 +10,10 @@
 <body>
     <nav class="navbar" th:fragment="header">
         <div class="navcontent">
-            <a th:href="@{/benutzer}" th:text="#{kopf.benutzer}">Benutzer</a>
+            <div>
+                <a th:href="@{/benutzer}" th:text="#{kopf.benutzer}">Benutzer</a>
+                <a th:href="@{/ort}" th:text="#{kopf.orte}">Orte</a>
+            </div>
             <div th:if="${info}">
                 <p class="info" th:text="${info}"></p>
             </div>

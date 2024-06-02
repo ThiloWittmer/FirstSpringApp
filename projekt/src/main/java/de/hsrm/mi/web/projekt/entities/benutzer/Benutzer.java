@@ -13,33 +13,31 @@ import de.hsrm.mi.web.projekt.validators.GutesPasswort;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
-
 @Entity
 public class Benutzer {
     @Id
     @GeneratedValue
     private long id;
 
-    
     @Version
     private long version;
-    
+
     @NotNull
     private String name;
     @NotNull
     private String mail;
-    
+
     @NotNull
-    @GutesPasswort(wort="siebzehn", ziffer="17")
+    @GutesPasswort(wort = "siebzehn", ziffer = "17")
     private String password;
-    
+
     @NotNull
-    @DateTimeFormat (iso = ISO.DATE)
+    @DateTimeFormat(iso = ISO.DATE)
     private LocalDate geburtstag;
-    
+
     @ElementCollection
     private Set<String> magListe = new HashSet<String>();
-    
+
     @ElementCollection
     private Set<String> magNichtListe = new HashSet<String>();
 
@@ -117,8 +115,5 @@ public class Benutzer {
     public void setAngeboteneTouren(List<Tour> angeboteneTouren) {
         this.angeboteneTouren = angeboteneTouren;
     }
-    
-    
 
-    
 }

@@ -78,13 +78,13 @@ public class BenutzerController {
         String pw = form.getPasswort();
 
         if (formErrors.hasErrors()) {
-            return "benutzerbearbeiten";
+            return "benutzer/benutzerbearbeiten";
         }
 
         // Benutzer existiert noch nicht und kein gueltiges Passwort
         if (pw.length() == 0 && benutzerService.holeBenutzerMitId(benNr).isEmpty()) {
             formErrors.rejectValue("passwort", "benutzer.passwort.ungesetzt", "Passwort wurde noch nicht gesetzt");
-            return "benutzerbearbeiten";
+            return "benutzer/benutzerbearbeiten";
         }
 
         // Wenn der Benutzer nicht schon existiert und das Passwortfeld leer ist
