@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import de.hsrm.mi.web.projekt.services.benutzer.BenutzerService;
+import de.hsrm.mi.web.projekt.services.tour.TourService;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,15 +22,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequestMapping("/tour")
-@SessionAttributes({"tourNr", "tourForm"})
+@SessionAttributes({"tourNr", "tourForm", "tour", "benutzerListe", "ortListe", "ort"})
 public class TourController {
 
     @Autowired
     private BenutzerService benutzerService;
+
+    @Autowired
+    private TourService tourService;
     
     @ModelAttribute
     public void createForm(Model m) {
         m.addAttribute("tourForm", new TourFormular());
+    }
+
+    @GetMapping
+    public String getAllTours(Model m) {
+        m.addAttribute("tourListe", tourService.holeAlleTouren());
+        return "tour/tourliste";
     }
 
     @GetMapping("/{tourNr}")
@@ -39,26 +49,36 @@ public class TourController {
         m.addAttribute("langCode", locale.getLanguage());
         m.addAttribute("tourNr", tourNr);
         m.addAttribute("benutzerListe", benutzerService.holeAlleBenutzer());
+        //ortListe
 
+        
         if(tourNr == 0) {
             Tour tour = new Tour();
             TourFormular tourForm = new TourFormular();
 
             m.addAttribute("tour", tour);
             m.addAttribute("tourForm", tourForm);
+        } else {
+            Tour tour;
+            tour = tourService.holeTourMitId(tourNr).get();
+            form.fromBenutzer(tour);
+
+            m.addAttribute("tour", tour);
+            m.addAttribute("tourForm", form);
         }
         
-            
         return "tour/tourbearbeiten";
     }
 
     
     @PostMapping("{tourNr}")
     public String postMethodName(@Valid @ModelAttribute("tourForm") TourFormular tourForm, BindingResult formErrors,
-        @ModelAttribute("tourNr") long tourNr, Model m) {
+        @ModelAttribute("tourNr") long tourNr, Model m, @ModelAttribute("tour") Tour tour) {
 
-        
-        return "redirect:/tour/";
+        tourForm.toTour(tour);
+        tourService.speichereTour(tour);
+         
+        return "tour/tourbearbeiten";
     }
     
 }

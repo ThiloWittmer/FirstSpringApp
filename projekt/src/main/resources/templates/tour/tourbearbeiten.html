@@ -14,40 +14,61 @@
         <form th:action="@{#}" th:method="POST" th:object="${tourForm}">
             <h1 th:text="${tourNr}? #{tourformular.titel(${tourNr})} : #{tourformular.titel.neu}">Titel</h1>
             <div>
-                <label th:text="#{tour.anbieter}"></label>
-                <select th:field="*{anbieter}">
-                    <option th:each="anb : ${benutzerListe}" th:value="${anb}" th:text="${anb.name}"></option>
-                </select>
+                <p th:text="#{tour.anbieter}"></p>
+                <div class="select">
+                    <select th:field="*{anbieter}">
+                        <option th:each="anb : ${benutzerListe}" th:value="${anb.id}" th:text="${anb.name}"></option>
+                    </select>
+                </div>
+                <p class="errorMessage" th:if="${#fields.hasErrors('anbieter')}"
+                    th:errors="*{anbieter}"></p>
             </div>
             <div>
-                <label th:text="#{tour.abfahrdatetime}"></label>
+                <p th:text="#{tour.abfahrdatetime}"></p>
                 <input class="inputField" type="datetime-local" th:field="*{abfahrDateTime}" th:errorclass="inputError">
+                <p class="errorMessage" th:if="${#fields.hasErrors('abfahrDateTime')}"
+                    th:errors="*{abfahrDateTime}"></p>
             </div>
             <div>
-                <label th:text="#{tour.preis}"></label>
+                <p th:text="#{tour.preis}"></p>
                 <input class="inputField" type="text" th:field="*{preis}" th:errorclass="inputError">
+                <p class="errorMessage" th:if="${#fields.hasErrors('preis')}"
+                    th:errors="*{preis}"></p>
             </div>
             <div>
-                <label th:text="tour.plaetze"></label>
+                <p th:text="#{tour.plaetze}"></p>
                 <input class="inputField" type="text" th:field="*{plaetze}" th:errorclass="inputError">
+                <p class="errorMessage" th:if="${#fields.hasErrors('plaetze')}"
+                th:errors="*{plaetze}"></p>
             </div>
             <div class="tourEditOrte">
                 <div>
-                    <label th:text="#{tour.startort}"></label>
-                    <select th:field="*{startOrt}">
-                        <option th:each="ort : ${ortListe}" th:value="${ort}" th:text="${ort.name}"></option>
-                    </select>
+                    <p th:text="#{tour.startort}"></p>
+                    <div class="select">
+                        <select th:field="*{startOrt}">
+                            <option th:each="ort : ${ortListe}" th:value="${ort.id}" th:text="${ort.name}"></option>
+                        </select>
+                    </div>
+                    <p class="errorMessage" th:if="${#fields.hasErrors('startOrt')}"
+                        th:errors="*{startOrt}"></p>
                 </div>
                 <div>
-                    <label th:text="#{tour.zielort}"></label>
-                    <select th:field="*{zielOrt}">
-                        <option th:each="ort : ${ortListe}" th:value="${ort}" th:text="${ort.name}"></option>
-                    </select>
+                    <p th:text="#{tour.zielort}"></p>
+                    <div class="select">
+                        <select th:field="*{zielOrt}">
+                            <option th:each="ort : ${ortListe}" th:value="${ort.id}" th:text="${ort.name}"></option>
+                        </select>
+                    </div>
+                    <p class="errorMessage" th:if="${#fields.hasErrors('zielOrt')}"
+                        th:errors="*{zielOrt}"></p>
+
                 </div>
             </div>
             <div>
-                <label th:text="#{tour.fahrgastinfos}"></label>
-                <textarea class="inputField" rows="4" th:field="*{info}" th:errorclass="inputError">
+                <p th:text="#{tour.fahrgastinfos}"></p>
+                <textarea class="inputField" rows="4" th:field="*{info}" th:errorclass="inputError"></textarea>
+                <p class="errorMessage" th:if="${#fields.hasErrors('info')}"
+                    th:errors="*{info}"></p>
             </div>
             <input type="submit" value="ok">
         </form>

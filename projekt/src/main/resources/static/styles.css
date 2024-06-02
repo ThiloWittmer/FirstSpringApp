@@ -60,6 +60,54 @@ body {
     padding-right: 15em;
 }
 
+.container form {
+    width: 50%;
+}
+
+.container form select {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+}
+
+.select {
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    min-width: 15ch;
+    max-width: 30ch;
+    padding: 0.25em 0.5em;
+    cursor: pointer;
+    line-height: 1.1;
+    background-color: #fff;
+    background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+    display: grid;
+    grid-template-areas: "select";
+    align-items: center;
+}
+
+.select::after {
+    content: "";
+    width: 0.8em;
+    height: 0.5em;
+    background-color: #777;
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    justify-self: end;
+}
+
+select,
+.select::after {
+    grid-area: select;
+}
+
 .containerliste{
     display: flex;
     flex-direction: column;
@@ -147,6 +195,7 @@ input[type="submit"]:hover, .containerliste .newUsr:hover{
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    min-width: 100%;
 }
 
 ul.custom-list {

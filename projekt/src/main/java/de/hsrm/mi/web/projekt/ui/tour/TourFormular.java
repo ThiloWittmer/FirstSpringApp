@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.entities.ort.Ort;
+import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -90,5 +91,25 @@ public class TourFormular {
         this.zielOrt = zielOrt;
     }
 
+
+    public void toTour(Tour t) {
+        t.setAbfahrDateTime(this.abfahrDateTime);
+        t.setPreis(this.preis);
+        t.setPlaetze(this.plaetze);
+        t.setInfo(this.info);
+        t.setAnbieter(this.anbieter);
+        t.setStartOrt(this.startOrt);
+        t.setZielOrt(this.zielOrt);
+    }
+
+    public void fromBenutzer(Tour t) {
+        this.abfahrDateTime = t.getAbfahrDateTime();
+        this.preis = t.getPreis();
+        this.plaetze = t.getPlaetze();
+        this.info = t.getInfo();
+        this.anbieter = t.getAnbieter();
+        this.startOrt = t.getStartOrt();
+        this.zielOrt = t.getZielOrt();
+    }
     
 }
