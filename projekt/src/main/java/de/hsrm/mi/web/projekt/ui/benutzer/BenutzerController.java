@@ -36,7 +36,7 @@ public class BenutzerController {
     public String getAllBenutzer(Model m) {
         List<Benutzer> benutzerListe = benutzerService.holeAlleBenutzer();
         m.addAttribute("benutzerListe", benutzerListe);
-        return "benutzerliste";
+        return "benutzer/benutzerliste";
     }
 
     @GetMapping("/{id}/del")
@@ -68,7 +68,7 @@ public class BenutzerController {
             m.addAttribute("benutzer", benutzer);
             m.addAttribute("formular", form);
         }
-        return "benutzerbearbeiten";
+        return "benutzer/benutzerbearbeiten";
     }
 
     @PostMapping("{benNr}")
@@ -78,13 +78,13 @@ public class BenutzerController {
         String pw = form.getPasswort();
 
         if (formErrors.hasErrors()) {
-            return "benutzerbearbeiten";
+            return "benutzer/benutzerbearbeiten";
         }
 
         // Benutzer existiert noch nicht und kein gueltiges Passwort
         if (pw.length() == 0 && benutzerService.holeBenutzerMitId(benNr).isEmpty()) {
             formErrors.rejectValue("passwort", "benutzer.passwort.ungesetzt", "Passwort wurde noch nicht gesetzt");
-            return "benutzerbearbeiten";
+            return "benutzer/benutzerbearbeiten";
         }
 
         // Wenn der Benutzer nicht schon existiert und das Passwortfeld leer ist
@@ -98,11 +98,11 @@ public class BenutzerController {
         } catch (Exception e) {
             String excMsg = e.getLocalizedMessage();
             m.addAttribute("info", excMsg);
-            return "benutzerbearbeiten";
+            return "benutzer/benutzerbearbeiten";
         }
 
         if (benNr > 0) {
-            return "benutzerbearbeiten";
+            return "benutzer/benutzerbearbeiten";
         }
 
         return "redirect:/benutzer/" + benutzer.getId();

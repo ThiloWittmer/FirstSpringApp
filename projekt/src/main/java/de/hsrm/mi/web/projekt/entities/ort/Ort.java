@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Version;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Ort {
@@ -16,7 +16,7 @@ public class Ort {
     @Version
     private long version;
 
-    @NotBlank
+    @NotNull
     private String name;
 
     private double geobreite;
@@ -63,5 +63,4 @@ public class Ort {
         this.geolaenge = geolaenge;
     }
 
-    
 }
