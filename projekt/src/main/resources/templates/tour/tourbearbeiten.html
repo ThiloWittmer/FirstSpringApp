@@ -17,6 +17,7 @@
                 <p th:text="#{tour.anbieter}"></p>
                 <div class="select">
                     <select th:field="*{anbieter}">
+                        <option value=0>---</option>
                         <option th:each="anb : ${benutzerListe}" th:value="${anb.id}" th:text="${anb.name}"></option>
                     </select>
                 </div>

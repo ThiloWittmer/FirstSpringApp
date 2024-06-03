@@ -27,6 +27,7 @@ public class TourFormular {
     @Size(max = 400)
     private String info;
 
+    @NotNull
     private Benutzer anbieter;
 
     @NotNull

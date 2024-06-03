@@ -11,7 +11,7 @@
 <body>
     <div th:replace="~{fragments/kopffuss :: header}"></div>
     <div class="container">
-        <form th:action="@{#}" th:method="POST" th:object="${formular}">
+        <form th:action="@{#}" th:method="POST" th:object="${ortForm}">
             <h1 th:text="${oNr}? #{ortformular.titel(${oNr})} : #{ortformular.titel.neu}">Titel</h1>
             <div>
                 <p th:text="#{ort.name}"></p>

@@ -21,15 +21,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequestMapping("/ort")
-@SessionAttributes({ "formular", "ueberschrift", "oNr", "ort" })
+@SessionAttributes({ "ortForm", "ueberschrift", "oNr", "ort" })
 public class OrtController {
 
     @Autowired
     private OrtService ortService;
 
-    @ModelAttribute("formular")
+    @ModelAttribute("ortForm")
     public void creatForm(Model m) {
-        m.addAttribute("formular", new OrtFormular());
+        m.addAttribute("ortForm", new OrtFormular());
     }
 
     @GetMapping
@@ -46,7 +46,7 @@ public class OrtController {
     }
 
     @GetMapping("/{oNr}")
-    public String ortProfil(@PathVariable("oNr") long oNr, Model m, @ModelAttribute("formular") OrtFormular form, Locale locale) {
+    public String ortProfil(@PathVariable("oNr") long oNr, Model m, @ModelAttribute("ortForm") OrtFormular form, Locale locale) {
         m.addAttribute("sprache", locale.getDisplayLanguage());
         m.addAttribute("langCode", locale.getLanguage());
         m.addAttribute("oNr", (oNr));
@@ -56,14 +56,14 @@ public class OrtController {
             OrtFormular oForm = new OrtFormular();
 
             m.addAttribute("ort", ort);
-            m.addAttribute("formular", oForm);
+            m.addAttribute("ortForm", oForm);
         } else {
             Ort ort;
             ort = ortService.holeOrteMitId(oNr).get();
             form.fromOrt(ort);
 
             m.addAttribute("ort", ort);
-            m.addAttribute("formular", form);
+            m.addAttribute("ortForm", form);
         }
 
         return "ort/ortbearbeiten";
@@ -71,7 +71,7 @@ public class OrtController {
   
 
     @PostMapping("{oNr}")
-    public String postForm(@Valid @ModelAttribute("formular") OrtFormular form, BindingResult formErrors,
+    public String postForm(@Valid @ModelAttribute("ortForm") OrtFormular form, BindingResult formErrors,
             @ModelAttribute("oNr") long oNr, Model m, @ModelAttribute("ort") Ort ort) {
 
         if (formErrors.hasErrors()) {
