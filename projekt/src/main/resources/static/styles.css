@@ -204,6 +204,12 @@ ul.custom-list {
     margin: 0;
 }
 
+.input-ort {
+    border-top: 1px solid #ccc;
+    padding: 8px;
+    width: 50%;
+}
+
 
 ul.custom-list li:first-child {
     border-top: none;
@@ -211,6 +217,12 @@ ul.custom-list li:first-child {
 ul.custom-list li {
     border-top: 1px solid #ccc;
     padding: 8px;
+}
+
+.custom-list{
+    list-style-type: none;
+    padding: 10px;
+    margin: 0;
 }
 
 input[type="text"]:hover {
