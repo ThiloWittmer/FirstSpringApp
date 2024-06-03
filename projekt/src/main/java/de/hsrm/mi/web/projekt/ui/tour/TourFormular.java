@@ -15,7 +15,7 @@ import jakarta.validation.constraints.Size;
 
 public class TourFormular {
 
-    @DateTimeFormat(iso = ISO.DATE)
+    @DateTimeFormat(iso = ISO.DATE_TIME)
     private LocalDateTime abfahrDateTime;
 
     @PositiveOrZero
