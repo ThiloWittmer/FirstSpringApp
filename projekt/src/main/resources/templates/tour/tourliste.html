@@ -12,7 +12,7 @@
     <div class="containerliste">
         <h1 th:text="#{tourliste.titel}">Touren</h1>
         <ul class="custom-list">
-            <th:block th:each="benutzer : ${tourListe}">
+            <th:block th:each="tour : ${tourListe}">
                 <li>
                     <div>
                         <p th:text="${tour.id}"></p>

@@ -46,6 +46,13 @@ public class TourController {
         return "tour/tourliste";
     }
 
+    @GetMapping("{id}/del")
+    public String deleteTour(@PathVariable("id") Long id) {
+        tourService.loescheTourMitId(id);
+        return "redirect:/tour";
+    }
+    
+
     @GetMapping("/{tourNr}")
     public String tourForm(@PathVariable("tourNr") long tourNr, Model m, 
         @ModelAttribute("tourForm") TourFormular form, Locale locale) {
@@ -79,10 +86,24 @@ public class TourController {
     public String postMethodName(@Valid @ModelAttribute("tourForm") TourFormular tourForm, BindingResult formErrors,
         @ModelAttribute("tourNr") long tourNr, Model m, @ModelAttribute("tour") Tour tour) {
 
-        tourForm.toTour(tour);
-        tourService.speichereTour(tour);
-         
-        return "tour/tourbearbeiten";
+        if (formErrors.hasErrors()) {
+            return "tour/tourbearbeiten";
+        }
+
+        try {
+            tourForm.toTour(tour);
+            tourService.speichereTourangebot(tour.getAnbieter().getId(), tour, tour.getStartOrt().getId(), tour.getZielOrt().getId());
+        } catch(Exception e) {
+            String excMsg = e.getLocalizedMessage();
+            m.addAttribute("info", excMsg);
+            return "tour/tourbearbeiten";            
+        }
+
+        if (tourNr > 0) {
+            return "tour/tourbearbeiten";
+        }
+
+        return "redirect:/tour/" + tour.getId();
     }
     
 }

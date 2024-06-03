@@ -130,7 +130,7 @@ select,
     justify-content: space-evenly;
 }
 
-.delUsr, .editUsr {
+.delUsr, .editUsr, .tourlistOrt {
     text-decoration: none;
     color: black;
     border-radius: 5px;
@@ -149,11 +149,11 @@ select,
     background-color: rgb(255, 20, 20);
 }
 
-.editUsr {
+.editUsr, .tourlistOrt {
     background-color: white;
 }
 
-.editUsr:hover {
+.editUsr:hover, .tourlistOrt:hover {
     background-color: lightgray;
 }
 

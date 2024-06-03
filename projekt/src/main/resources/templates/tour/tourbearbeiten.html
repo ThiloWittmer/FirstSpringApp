@@ -47,6 +47,7 @@
                     <p th:text="#{tour.startort}"></p>
                     <div class="select">
                         <select th:field="*{startOrt}">
+                            <option value=0>---</option>
                             <option th:each="ort : ${ortListe}" th:value="${ort.id}" th:text="${ort.name}"></option>
                         </select>
                     </div>
@@ -57,6 +58,7 @@
                     <p th:text="#{tour.zielort}"></p>
                     <div class="select">
                         <select th:field="*{zielOrt}">
+                            <option value=0>---</option>
                             <option th:each="ort : ${ortListe}" th:value="${ort.id}" th:text="${ort.name}"></option>
                         </select>
                     </div>

@@ -41,7 +41,7 @@ public class Benutzer {
     @ElementCollection
     private Set<String> magNichtListe = new HashSet<String>();
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.REMOVE)
     private List<Tour> angeboteneTouren;
 
     public long getId() {
@@ -116,4 +116,11 @@ public class Benutzer {
         this.angeboteneTouren = angeboteneTouren;
     }
 
+    public void addTour(Tour tour) {
+        this.angeboteneTouren.add(tour);
+    }
+
+    public void removeTour(Tour tour) {
+        this.angeboteneTouren.remove(tour);
+    }
 }
